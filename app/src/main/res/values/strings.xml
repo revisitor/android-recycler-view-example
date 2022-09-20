@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">RecyclerView</string>
+    <string-array name="colors">
+        <item>WHITE</item>
+        <item>BLACK</item>
+        <item>BLUE</item>
+        <item>RED</item>
+        <item>MAGENTA</item>
+    </string-array>
+</resources>
