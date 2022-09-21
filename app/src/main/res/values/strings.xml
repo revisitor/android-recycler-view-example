@@ -1,10 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">RecyclerView</string>
-    <string-array name="colors">
-        <item>WHITE</item>
-        <item>BLACK</item>
-        <item>BLUE</item>
-        <item>RED</item>
-        <item>MAGENTA</item>
+    <string name="color_toast">IT\'S %1$s</string>
+    <string-array name="color_names">
+        <item>#FFFFFFFF WHITE</item>
+        <item>#FF000000 BLACK</item>
+        <item>#FF0000FF BLUE</item>
+        <item>#FFFF0000 RED</item>
+        <item>#FFFF00FF MAGENTA</item>
     </string-array>
 </resources>

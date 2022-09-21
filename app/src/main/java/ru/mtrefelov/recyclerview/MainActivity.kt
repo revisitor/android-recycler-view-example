@@ -1,27 +1,37 @@
 package ru.mtrefelov.recyclerview
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import android.widget.Toast
 
-class MainActivity : AppCompatActivity() {
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.graphics.toColorInt
+import androidx.recyclerview.widget.*
+
+class MainActivity : AppCompatActivity(), ColorClickListener {
+    private lateinit var toast: Toast
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        toast = Toast.makeText(this, "", Toast.LENGTH_LONG)
+
         findViewById<RecyclerView>(R.id.rView).apply {
             layoutManager = LinearLayoutManager(this@MainActivity)
-            adapter = ColorAdapter(getColors())
+            adapter = ColorAdapter(getColors(), this@MainActivity)
         }
     }
 
-    private fun getColors(): List<ColorData> {
-        val colorNames = resources.getStringArray(R.array.colors)
-        val colors = listOf(
-            R.color.white, R.color.black, R.color.blue, R.color.red, R.color.magenta
-        ).map { resources.getColor(it, null) }
+    override fun onClick(colorName: CharSequence) {
+        toast.apply {
+            val toastText = getString(R.string.color_toast, colorName.toString().uppercase())
+            setText(toastText)
+            show()
+        }
+    }
 
-        return colorNames.mapIndexed { i, colorName -> ColorData(colorName, colors[i]) }
+    private fun getColors(): List<ColorData> = resources.getStringArray(R.array.color_names).map {
+        val (colorHex: String, colorName: CharSequence) = it.split(" ")
+        ColorData(colorName, colorHex.toColorInt())
     }
 }
